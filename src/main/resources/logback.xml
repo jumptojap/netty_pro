@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- 控制台日志输出配置 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 控制台日志输出格式 -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 文件日志输出配置 -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <!-- 日志文件路径 -->
+        <file>logs/myapp.log</file>
+        <!-- 文件日志输出格式 -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+        <!-- 配置文件滚动，按大小触发滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize> <!-- 文件大小超过10MB时滚动 -->
+        </rollingPolicy>
+    </appender>
+
+    <!-- 设置根日志级别 -->
+    <root level="debug">
+        <!-- 配置根日志输出到控制台和文件 -->
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>
